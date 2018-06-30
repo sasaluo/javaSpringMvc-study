@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.fonsveiw.xshow.dao.UserDao">
+
+    <insert id="save"  parameterType="com.fonsveiw.xshow.model.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user VALUES (#{id},#{username},#{password})
+    </insert>
+    <select id="queryUser" resultType="com.fonsveiw.xshow.model.User">
+        select * from user
+    </select>
+
+    <select id="deleteUser" parameterType="Integer">
+        DELETE from user where id = #{id}
+    </select>
+    <select id="updateUser" parameterType="com.fonsveiw.xshow.vo.modifyPwdVo">
+        UPDATE user set password = #{newpassword} where username = #{username}
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="com.fonsveiw.xshow.model.User">
+        select * from user where username = #{username}
+    </select>
+
+</mapper>
